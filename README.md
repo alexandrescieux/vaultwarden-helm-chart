@@ -6,19 +6,19 @@
 helm template vaultwarden --namespace vaultwarden .
 ````
 
-## Installati2on
+## Install
 
 ````bash
 helm install vaultwarden --create-namespace --namespace vaultwarden .
 ````
 
-## Mise à jour
+## Update
 
 ````bash
 helm upgrade vaultwarden --install --namespace vaultwarden .
 ````
 
-## Suppression
+## Delete
 
 ````bash
 helm delete vaultwarden --namespace vaultwarden 
