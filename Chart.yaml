@@ -1,0 +1,13 @@
+apiVersion: v2
+name: vaultwarden
+version: 1.32.6
+description: 
+type: application
+keywords:
+  - vaultwarden
+  - password
+  - vault
+home: https://github.com/dani-garcia/vaultwarden
+sources: 
+  - https://github.com/dani-garcia/vaultwarden
+appVersion: 1.32.6

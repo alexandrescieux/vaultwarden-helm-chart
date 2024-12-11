@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.vaultwarden.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Values.deployment.vaultwarden.name }}
+spec:
+  selector:
+    app: {{ .Values.deployment.vaultwarden.name }}
+  type: ClusterIP
+  ports:
+    - name: {{ .Values.service.vaultwarden.name }}
+      port: {{ .Values.service.vaultwarden.port }}
+      protocol: TCP
+      targetPort: {{ .Values.deployment.vaultwarden.ports.containerPort }}

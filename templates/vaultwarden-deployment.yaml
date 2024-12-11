@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.vaultwarden.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Values.deployment.vaultwarden.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.vaultwarden.name }}
+  replicas: {{ .Values.deployment.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.vaultwarden.name }}
+    spec:
+      containers:
+        - name: {{ .Values.deployment.vaultwarden.name }}
+          image: {{ .Values.deployment.vaultwarden.image }}
+          imagePullPolicy: Always
+          env:
+            - name: DOMAIN
+              value: {{ .Values.deployment.vaultwarden.env.DOMAIN }}
+          ports:
+            - name: {{ .Values.service.vaultwarden.name }}
+              containerPort: {{ .Values.deployment.vaultwarden.ports.containerPort }}
+              protocol: TCP
+          volumeMounts:
+            - name: {{ .Release.Name }}-{{ .Values.volumes.data.name }}
+              mountPath: {{ .Values.deployment.vaultwarden.volumeMounts.data.mountPath }}
+              readOnly: {{ .Values.deployment.vaultwarden.volumeMounts.data.readOnly }}
+      volumes:
+        - name: {{ .Release.Name }}-{{ .Values.volumes.data.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-{{ .Values.volumes.data.name }}

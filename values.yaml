@@ -1,0 +1,31 @@
+certificate:
+  issuer: letsencrypt-prod
+  commonName: vaultwarden.scieux.net
+  dnsNames:
+  - vaultwarden.scieux.net
+
+deployment:
+  replicas: 1
+  vaultwarden: 
+    name: vaultwarden
+    image: vaultwarden/server
+    ports:
+      containerPort: 80
+    env:
+      DOMAIN: https://vaultwarden.scieux.net
+    volumeMounts:
+      data:
+        mountPath: /data
+        readOnly: false
+
+service:
+  vaultwarden:
+    name: vaultwarden
+    port: 80
+    targetPort: 80
+
+volumes:
+  data:
+    name: data
+    storage: 10Gi
+    hostpath: /mnt/vaultwarden/data
