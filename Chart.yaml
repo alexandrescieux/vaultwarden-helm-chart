@@ -1,6 +1,6 @@
 apiVersion: v2
 name: vaultwarden
-version: 1.32.6
+version: 1.33.0
 description: 
 type: application
 keywords:
@@ -10,4 +10,4 @@ keywords:
 home: https://github.com/dani-garcia/vaultwarden
 sources: 
   - https://github.com/dani-garcia/vaultwarden
-appVersion: 1.32.6
+appVersion: 1.33.0
